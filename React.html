@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Front End Development / React</title>
+  </head>
+  <body>
+    <!-- We will put our React component inside this div. -->
+    <div id="root"></div>
+
+    <!-- Load React & Babel -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <!-- Load our React component. -->
+
+    <script type="text/babel">
+      // React component
+      function HelloComponent() {
+        const url = "http://www.example.com";
+        const numRequests = 10;
+
+        for (let i = 0; i < numRequests; i++) {
+          fetch(url)
+            .then((response) =>
+              console.log(`Request ${i + 1} status code: ${response.status}`)
+            )
+            .catch((error) =>
+              console.error(`Request ${i + 1} failed: ${error}`)
+            );
+        }
+
+        return <div>Hello World</div>;
+      }
+      // Create root element
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      // Initial render
+      root.render(<HelloComponent />);
+    </script>
+  </body>
+</html>
